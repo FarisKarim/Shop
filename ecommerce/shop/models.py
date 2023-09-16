@@ -15,7 +15,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        truncated_description = self.description[:20]
+        return f"{self.name} - {truncated_description} - ${self.price}"
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
